@@ -7,4 +7,9 @@ test("GET to api/v1/status should return 200", async () => {
 
   const parsedUpdatedAt = new Date(responseBody.updated_at).toISOString();
   expect(responseBody.updated_at).toEqual(parsedUpdatedAt);
+
+  const dbInfo = responseBody.dependencies.database;
+  expect(dbInfo.max_connections).toBeDefined();
+  expect(dbInfo.opened_connections).toBeDefined();
+  expect(dbInfo.version).toBeDefined();
 });
