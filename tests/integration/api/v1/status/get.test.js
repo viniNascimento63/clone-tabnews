@@ -12,15 +12,12 @@ test("GET to api/v1/status should return 200", async () => {
   expect(dbVersion).toBeDefined();
   expect(dbVersion).toBe("18.4");
 
-  const dbMaxConnections = Number(
-    responseBody.dependencies.database.max_connections,
-  );
+  const dbMaxConnections = responseBody.dependencies.database.max_connections;
   expect(dbMaxConnections).toBeDefined();
   expect(dbMaxConnections).toBe(100);
 
-  const dbOpenedConnections = Number(
-    responseBody.dependencies.database.opened_connections,
-  );
+  const dbOpenedConnections =
+    responseBody.dependencies.database.opened_connections;
   expect(dbOpenedConnections).toBeDefined();
-  expect(dbOpenedConnections).toBeLessThanOrEqual(12);
+  expect(dbOpenedConnections).toBeLessThanOrEqual(10);
 });
